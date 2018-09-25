@@ -1,13 +1,15 @@
-import React from 'react';
-import Article from "./Article";
+import React, { PureComponent } from 'react';
+import Sidebar from './Sidebar'
+import MainAppBar from './MainAppBar'
 
-function App() {
-  return (
-    <div>
-      <h1>Hello world</h1>
-      <Article/>
-    </div>
-  );
+export default class App extends PureComponent {
+  render() {
+    return (
+      <div>
+        <MainAppBar/>
+        <Sidebar/>
+        <h2>Article</h2>
+      </div>
+    );
+  }
 }
-
-export default App;
