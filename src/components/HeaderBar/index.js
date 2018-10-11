@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 
-export default class MainAppBar extends PureComponent {
+export default class HeaderBar extends PureComponent {
   render() {
     return (
-      <AppBar>
+      <AppBar className="main-app-bar">
         <p>AppBar</p>
       </AppBar>
     );

@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
-import Sidebar from './Sidebar'
-import MainAppBar from './MainAppBar'
+import './styles.css'
+import Sidebar from '../Sidebar'
+import HeaderBar from '../HeaderBar'
 
 export default class App extends PureComponent {
   render() {
     return (
       <div>
-        <MainAppBar/>
+        <HeaderBar/>
         <Sidebar/>
         <h2>Article</h2>
       </div>
