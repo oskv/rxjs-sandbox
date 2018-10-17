@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import LibraryAdd from '@material-ui/icons/LibraryAdd';
+import Settings from '@material-ui/icons/Settings';
+import LineStyle from '@material-ui/icons/LineStyle';
 
 export default class SidebarTabs extends PureComponent {
   state = {
@@ -18,10 +21,10 @@ export default class SidebarTabs extends PureComponent {
     return (
       <div className="sidebar-tabs">
         <Paper square>
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
+          <Tabs value={value} onChange={this.handleChange} fullWidths>
+            <Tab label="Content" icon={<LibraryAdd />} />
+            <Tab label="Rows" icon={<LineStyle />} />
+            <Tab label="Settings" icon={<Settings />} />
           </Tabs>
         </Paper>
         {value === 0 && <div>Item One</div>}

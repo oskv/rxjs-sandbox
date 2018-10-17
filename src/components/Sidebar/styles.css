@@ -1,3 +1,12 @@
+.app-sidebar,
+.app-sidebar > div {
+	width: 350px;
+}
 .app-sidebar > div{
 	top: 51px;
+}
+
+.app-sidebar button.MuiTab-root-57 {
+	min-width: auto;
+	flex: 1;
 }
