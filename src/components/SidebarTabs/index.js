@@ -21,10 +21,10 @@ export default class SidebarTabs extends PureComponent {
     return (
       <div className="sidebar-tabs">
         <Paper square>
-          <Tabs value={value} onChange={this.handleChange} fullWidths>
-            <Tab label="Content" icon={<LibraryAdd />} />
-            <Tab label="Rows" icon={<LineStyle />} />
-            <Tab label="Settings" icon={<Settings />} />
+          <Tabs value={value} onChange={this.handleChange}>
+            <Tab label="Content" icon={<LibraryAdd />} className="tab-label" />
+            <Tab label="Rows" icon={<LineStyle />} className="tab-label" />
+            <Tab label="Settings" icon={<Settings />} className="tab-label" />
           </Tabs>
         </Paper>
         {value === 0 && <div>Item One</div>}

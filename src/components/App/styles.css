@@ -5,8 +5,13 @@ body {
 }
 .page-content {
 	display: flex;
+  min-height: 100vh;
 }
 main {
 	flex-grow: 1;
-	margin-top: 50px;
+	margin-top: 64px;
+}
+.logo-icon {
+  margin-right: 5px;
+  font-size: 32px;
 }

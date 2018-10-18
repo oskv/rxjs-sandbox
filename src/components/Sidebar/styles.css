@@ -1,12 +1,12 @@
-.app-sidebar,
-.app-sidebar > div {
+.app-sidebar {
 	width: 350px;
+  margin-top: 64px;
 }
 .app-sidebar > div{
-	top: 51px;
+  position: relative;
 }
 
-.app-sidebar button.MuiTab-root-57 {
+.app-sidebar .tab-label {
 	min-width: auto;
 	flex: 1;
 }
