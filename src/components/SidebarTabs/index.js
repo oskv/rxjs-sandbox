@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
 import Settings from '@material-ui/icons/Settings';
 import LineStyle from '@material-ui/icons/LineStyle';
+import RowTemplatesList from '../RowTemplatesList'
 
 export default class SidebarTabs extends PureComponent {
   state = {
@@ -28,7 +29,7 @@ export default class SidebarTabs extends PureComponent {
           </Tabs>
         </Paper>
         {value === 0 && <div>Item One</div>}
-        {value === 1 && <div>Item Two</div>}
+        {value === 1 && <RowTemplatesList/>}
         {value === 2 && <div>Item Three</div>}
       </div>
     );
