@@ -1,0 +1,13 @@
+.row-templates-list .row-template {
+  background: #9b9bc517;
+}
+.row-template .grid {
+  padding: 5px;
+}
+.row-template .col {
+  display: block;
+  margin: 5px;
+  height: 60px;
+  background: #afd0ea21;
+  border: 1px solid #d2d6ec;
+}

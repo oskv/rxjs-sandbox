@@ -23,35 +23,25 @@ const boxSource = {
   },
 };
 
-class RowTemplate extends PureComponent {
+class BlockTemplate extends PureComponent {
   constructor(props) {
     super(props);
-    this.columns = props.columns;
+    this.type = props.type;
   }
-
-  getWidth = (width) => {
-    return  Math.round(width / 100 * 12);
-  };
 
   render() {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource && connectDragSource(
       <div>
-      <Paper className="row-template">
-        <Grid  container className='grid' justify="center">
-          { this.columns.map((column, i) =>
-            <Grid key={i} item xs={this.getWidth(column.width)}>
-              <span className="col"/>
-            </Grid>
-          )}
-        </Grid>
+      <Paper className="block-template">
+        <span>{this.type}</span>
       </Paper>
       </div>
     );
   }
 }
 
-export default DragSource('box', boxSource, (connect, monitor) => ({
+export default DragSource('block', boxSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
-}))(RowTemplate);
+}))(BlockTemplate);
