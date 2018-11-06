@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import './styles.css'
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import { DragSource } from 'react-dnd';
 
 const boxSource = {
@@ -31,10 +34,12 @@ class BlockTemplate extends PureComponent {
   render() {
     const { connectDragSource } = this.props;
     return connectDragSource && connectDragSource(
-      <div>
-      <Paper className="block-template">
-        <span>{this.type}</span>
-      </Paper>
+      <div className="block-template">
+        <Card>
+          <CardContent>
+            <Typography variant="h2">{this.type}</Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   }
