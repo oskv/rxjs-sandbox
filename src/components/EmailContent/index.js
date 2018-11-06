@@ -10,10 +10,10 @@ export default class EmaiContent extends PureComponent {
     this.moveCard = this.moveCard.bind(this);
     this.state = {
       rows: [
-        { id: 1, name: 'row 1' },
-        { id: 2, name: 'row 2' },
-        { id: 3, name: 'row 3' },
-        { id: 4, name: 'row 4' },
+        { id: 1, name: 'row 1', columns: [{ width: 100 }] },
+        { id: 2, name: 'row 2', columns: [{ width: 60 }, { width: 40 }] },
+        { id: 3, name: 'row 3', columns: [{ width: 33 }, { width: 33 }, { width: 33 }] },
+        { id: 4, name: 'row 4', columns: [{ width: 25 }, { width: 25 }, { width: 25 }, { width: 25 }] },
       ]
     }
   }
@@ -26,18 +26,16 @@ export default class EmaiContent extends PureComponent {
         <Row allowedDropEffect="any"
              index={i}
              id={row.id}
+             columns={row.columns}
              name={row.name}
              moveCard={this.moveCard}
         />
+        { i === rows.length-1 && <RowDropTarget/>}
       </div>
     );
     return (
       <div className="email-content">
         {listRows}
-        {/*<Row allowedDropEffect="any" />*/}
-        {/*<br/>*/}
-        {/*<Row allowedDropEffect="any" />*/}
-        {/*<Row allowedDropEffect="any" />*/}
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import { DropTarget, DragSource } from 'react-dnd'
-import Block from '../Block'
+import BlockDropTarget from '../BlockDropTarget'
 import { findDOMNode } from 'react-dom'
+import './styles.css'
 
 const boxTarget = {
   drop({ allowedDropEffect }) {
@@ -85,8 +86,11 @@ const boxSource = {
 
 class Row extends PureComponent {
   render() {
-    const { canDrop, isOver, allowedDropEffect, connectDropTarget, connectDragSource } = this.props;
-    const isActive = canDrop && isOver
+    const { canDrop, isOver, allowedDropEffect, connectDropTarget, connectDragSource, connectDragPreview, columns } = this.props;
+    const isActive = canDrop && isOver;
+    const columnsElements = columns.map((column, i) =>
+      <BlockDropTarget key={i} width={`${column.width}%`}/>
+    );
 
     let backgroundColor = 'antiquewhite'
     if (isActive) {
@@ -96,14 +100,14 @@ class Row extends PureComponent {
     }
 
     return (
-      connectDragSource &&
+      connectDragPreview &&
       connectDropTarget &&
-      connectDragSource(
+      connectDragPreview(
         connectDropTarget(
         <div style={{ backgroundColor }}>
-          <p>Row {this.props.id}</p>
-          <p>{this.props.name}</p>
-          <Block />
+          {connectDragSource(<span>Handler {this.props.id}</span>)}
+
+          <div className='row-block-wrapper'>{columnsElements}</div>
         </div>,
       )
     ))
@@ -118,5 +122,6 @@ const dropTarget =  DropTarget('box', boxTarget, (connect, monitor) => ({
 
 export default DragSource('box', boxSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
+  connectDragPreview: connect.dragPreview(),
   isDragging: monitor.isDragging()
 }))(dropTarget);
