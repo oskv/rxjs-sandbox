@@ -38,11 +38,11 @@ class Block extends PureComponent {
     const { canDrop, isOver, allowedDropEffect, connectDropTarget, connectDragSource } = this.props;
     const isActive = canDrop && isOver;
 
-    let backgroundColor = 'red';
+    let backgroundColor = 'grey';
     if (isActive) {
       backgroundColor = 'blue';
     } else if (canDrop) {
-      backgroundColor = 'white';
+      backgroundColor = 'cadetblue';
     }
 
     return (
@@ -51,13 +51,7 @@ class Block extends PureComponent {
       connectDragSource(
         connectDropTarget(
         <div style={{ backgroundColor }}>
-          {`Works with ${allowedDropEffect} drop effect`}
-          <br />
-          <br />
-          <br />
-          <br /><br />
-          <br />
-          {isActive ? 'Release to drop' : 'Drag a box here'}
+          <p>Drag a block here</p>
         </div>,
       )
     ))

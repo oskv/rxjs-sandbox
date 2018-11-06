@@ -51,7 +51,7 @@ class RowTemplate extends PureComponent {
   }
 }
 
-export default DragSource('box', boxSource, (connect, monitor) => ({
+export default DragSource('row-drop-target', boxSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))(RowTemplate);

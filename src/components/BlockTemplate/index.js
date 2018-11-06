@@ -37,7 +37,7 @@ class BlockTemplate extends PureComponent {
       <div className="block-template">
         <Card>
           <CardContent>
-            <Typography variant="h2">{this.type}</Typography>
+            <Typography variant="subheading">{this.type}</Typography>
           </CardContent>
         </Card>
       </div>
