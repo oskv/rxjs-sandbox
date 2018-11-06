@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import Row from '../Row'
 import RowDropTarget from '../RowDropTarget'
+import './styles.css'
 const update = require('immutability-helper');
 
 export default class EmaiContent extends PureComponent {
@@ -11,7 +12,16 @@ export default class EmaiContent extends PureComponent {
     this.state = {
       rows: [
         { id: 1, name: 'row 1', columns: [{ width: 100 }] },
-        { id: 2, name: 'row 2', columns: [{ width: 60 }, { width: 40 }] },
+        { id: 2, name: 'row 2', columns: [
+          {
+            width: 60,
+            block: {
+              id: 'block_1',
+              type: 'text',
+              value: 'Enter some text here',
+            }
+          },
+          { width: 40 }] },
         { id: 3, name: 'row 3', columns: [{ width: 33 }, { width: 33 }, { width: 33 }] },
         { id: 4, name: 'row 4', columns: [{ width: 25 }, { width: 25 }, { width: 25 }, { width: 25 }] },
       ]

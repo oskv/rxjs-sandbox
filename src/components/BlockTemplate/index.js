@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import './styles.css'
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { DragSource } from 'react-dnd';
@@ -45,7 +44,7 @@ class BlockTemplate extends PureComponent {
   }
 }
 
-export default DragSource('block', boxSource, (connect, monitor) => ({
+export default DragSource('column', boxSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))(BlockTemplate);

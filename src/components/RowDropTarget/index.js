@@ -1,37 +1,35 @@
 import React, { PureComponent } from 'react'
 import { DropTarget } from 'react-dnd'
+import './styles.css'
 
 const boxTarget = {
-  drop({ allowedDropEffect }) {
+  drop() {
     console.log('drop Row Drop Target');
     return {
-      name: `${allowedDropEffect} Dustbin`,
-      allowedDropEffect,
+      name: `Dustbin`,
     }
   },
-  hover(props, monitor, component) {
+  /*hover(props, monitor, component) {
     console.log('hover Row Drop Target');
-  }
+  }*/
 };
 
 class RowDropTarget extends PureComponent {
   render() {
-    const { canDrop, isOver, allowedDropEffect, connectDropTarget, connectDragSource } = this.props;
-    const isActive = canDrop && isOver
+    const { canDrop, isOver, connectDropTarget } = this.props;
+    const isActive = canDrop && isOver;
+    let className = '';
 
-    let backgroundColor = 'aliceblue'
     if (isActive) {
-      backgroundColor = 'darkgreen'
+      className = 'active';
     } else if (canDrop) {
-      backgroundColor = 'darkkhaki'
+      className = 'can-drop';
     }
 
     return (
       connectDropTarget &&
       connectDropTarget(
-        <div style={{ backgroundColor }}>
-          <p>Drag a row here</p>
-        </div>,
+        <div className={`row-drop-target ${className}`} />,
       )
     )
   }

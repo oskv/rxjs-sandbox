@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import { DropTarget, DragSource } from 'react-dnd'
-import BlockDropTarget from '../BlockDropTarget'
+import Column from '../Column'
 import { findDOMNode } from 'react-dom'
+import Icon from '@material-ui/core/Icon';
 import './styles.css'
 
 const boxTarget = {
@@ -18,7 +19,7 @@ const boxTarget = {
       return null
     }
     const dragIndex = monitor.getItem().index
-    const hoverIndex = props.index
+    const hoverIndex = props.index;
 
     // Don't replace items with themselves
     if (dragIndex === hoverIndex) {
@@ -26,9 +27,7 @@ const boxTarget = {
     }
 
     // Determine rectangle on screen
-    const hoverBoundingRect = (findDOMNode(
-      component,
-    )).getBoundingClientRect()
+    const hoverBoundingRect = (findDOMNode(component)).getBoundingClientRect();
 
     // Get vertical middle
     const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
@@ -53,13 +52,7 @@ const boxTarget = {
       return
     }
 
-    // Time to actually perform the action
-    props.moveCard(dragIndex, hoverIndex)
-
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
+    props.moveCard(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex
   }
 };
@@ -86,17 +79,17 @@ const boxSource = {
 
 class Row extends PureComponent {
   render() {
-    const { canDrop, isOver, allowedDropEffect, connectDropTarget, connectDragSource, connectDragPreview, columns } = this.props;
+    const { canDrop, isOver, connectDropTarget, connectDragSource, connectDragPreview, columns } = this.props;
     const isActive = canDrop && isOver;
+    let className = '';
     const columnsElements = columns.map((column, i) =>
-      <BlockDropTarget key={i} width={`${column.width}%`}/>
+      <Column key={i} width={`${column.width}%`} block={column.block}/>
     );
 
-    let backgroundColor = 'antiquewhite'
     if (isActive) {
-      backgroundColor = 'darkgreen'
+      className = 'active';
     } else if (canDrop) {
-      backgroundColor = 'darkkhaki'
+      className = 'can-drop';
     }
 
     return (
@@ -104,10 +97,10 @@ class Row extends PureComponent {
       connectDropTarget &&
       connectDragPreview(
         connectDropTarget(
-        <div style={{ backgroundColor }}>
-          {connectDragSource(<span>Handler {this.props.id}</span>)}
+        <div className={`row-wrapper ${className}`}>
+          {connectDragSource(<span className='handler'><Icon>swap_vert</Icon></span>)}
 
-          <div className='row-block-wrapper'>{columnsElements}</div>
+          <div className='row-content'>{columnsElements}</div>
         </div>,
       )
     ))
