@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { DropTarget, DragSource } from 'react-dnd'
 import Block from '../Block'
-//import ItemTypes from '../Single Target/ItemTypes'
 
 const boxTarget = {
   drop({ allowedDropEffect }) {

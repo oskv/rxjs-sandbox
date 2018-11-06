@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { DropTarget, DragSource } from 'react-dnd'
-//import ItemTypes from '../Single Target/ItemTypes'
 
 const boxTarget = {
   drop({ allowedDropEffect }) {
@@ -37,13 +36,13 @@ const boxSource = {
 class Block extends PureComponent {
   render() {
     const { canDrop, isOver, allowedDropEffect, connectDropTarget, connectDragSource } = this.props;
-    const isActive = canDrop && isOver
+    const isActive = canDrop && isOver;
 
-    let backgroundColor = 'red'
+    let backgroundColor = 'red';
     if (isActive) {
-      backgroundColor = 'blue'
+      backgroundColor = 'blue';
     } else if (canDrop) {
-      backgroundColor = 'white'
+      backgroundColor = 'white';
     }
 
     return (

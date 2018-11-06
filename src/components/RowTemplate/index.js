@@ -13,7 +13,7 @@ const boxSource = {
 
   endDrag(props, monitor) {
     const item = monitor.getItem();
-    const dropResult = monitor.getDropResult()
+    const dropResult = monitor.getDropResult();
 
     if (dropResult) {
       console.log(`You dropped ${item} into ${dropResult}!`);
@@ -34,7 +34,7 @@ class RowTemplate extends PureComponent {
   };
 
   render() {
-    const { isDragging, connectDragSource } = this.props;
+    const { connectDragSource } = this.props;
     return connectDragSource && connectDragSource(
       <div>
       <Paper className="row-template">

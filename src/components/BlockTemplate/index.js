@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import './styles.css'
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { DragSource } from 'react-dnd';
 
@@ -13,7 +12,7 @@ const boxSource = {
 
   endDrag(props, monitor) {
     const item = monitor.getItem();
-    const dropResult = monitor.getDropResult()
+    const dropResult = monitor.getDropResult();
 
     if (dropResult) {
       console.log(`You dropped ${item} into ${dropResult}!`);
@@ -30,7 +29,7 @@ class BlockTemplate extends PureComponent {
   }
 
   render() {
-    const { isDragging, connectDragSource } = this.props;
+    const { connectDragSource } = this.props;
     return connectDragSource && connectDragSource(
       <div>
       <Paper className="block-template">

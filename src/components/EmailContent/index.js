@@ -1,6 +1,4 @@
 import React, {PureComponent} from 'react';
-//import './styles.css'
-import { DropTarget, ConnectDropTarget } from 'react-dnd'
 import Row from '../Row'
 
 export default class EmaiContent extends PureComponent {
