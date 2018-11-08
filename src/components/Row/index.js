@@ -4,15 +4,16 @@ import Column from '../Column'
 import { findDOMNode } from 'react-dom'
 import Icon from '@material-ui/core/Icon';
 import './styles.css'
+import { connect } from "react-redux";
+import { moveRow } from '../../actions';
 
 const boxTarget = {
-  drop({ allowedDropEffect }) {
-    console.log('drop');
+  drop(props, monitor, component) {
     return {
-      name: `${allowedDropEffect} Dustbin`,
-      allowedDropEffect,
+      name: `Dustbin`,
     }
   },
+
   hover(props, monitor, component) {
     console.log('hover');
     if (!component) {
@@ -52,7 +53,10 @@ const boxTarget = {
       return
     }
 
-    props.moveCard(dragIndex, hoverIndex);
+    console.log('.....');
+    console.log(dragIndex, hoverIndex);
+    props.dispatch(moveRow(dragIndex, hoverIndex));
+    //props.moveCard(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex
   }
 };
@@ -79,11 +83,11 @@ const boxSource = {
 
 class Row extends PureComponent {
   render() {
-    const { canDrop, isOver, connectDropTarget, connectDragSource, connectDragPreview, columns } = this.props;
+    const { canDrop, isOver, connectDropTarget, connectDragSource, connectDragPreview, columns, id } = this.props;
     const isActive = canDrop && isOver;
     let className = '';
     const columnsElements = columns.map((column, i) =>
-      <Column key={i} width={`${column.width}%`} block={column.block}/>
+      <Column key={i} width={`${column.width}%`} block={column.block} rowId={id} index={i} />
     );
 
     if (isActive) {
@@ -113,8 +117,10 @@ const dropTarget =  DropTarget('box', boxTarget, (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 }))(Row);
 
-export default DragSource('box', boxSource, (connect, monitor) => ({
+const draggableRow = DragSource('box', boxSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   connectDragPreview: connect.dragPreview(),
   isDragging: monitor.isDragging()
 }))(dropTarget);
+
+export default connect()(draggableRow);

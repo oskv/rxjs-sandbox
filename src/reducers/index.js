@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import content from './content'
+import rows from './rows'
 import activeRow from './active-row'
 import activeBlock from './active-block'
 
 export default combineReducers({
-  content,
+  rows,
   activeRow,
   activeBlock,
 })

@@ -7,7 +7,7 @@ export default class RowTemplatesList extends PureComponent {
   constructor(props) {
     super(props);
     this.blocks = [
-      { type: 'text', icon: ''},
+      { type: 'text', icon: '', data: { text: 'Input som text here'}},
       { type: 'image', icon: ''},
       { type: 'button', icon: ''},
     ];

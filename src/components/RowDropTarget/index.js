@@ -1,17 +1,13 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { DropTarget } from 'react-dnd'
+import { addRow as addRowAction } from '../../actions'
 import './styles.css'
 
 const boxTarget = {
-  drop() {
-    console.log('drop Row Drop Target');
-    return {
-      name: `Dustbin`,
-    }
+  drop({ dispatch, rowIndex, position }, monitor) {
+    dispatch(addRowAction(rowIndex, position, monitor.getItem().templateData));
   },
-  /*hover(props, monitor, component) {
-    console.log('hover Row Drop Target');
-  }*/
 };
 
 class RowDropTarget extends PureComponent {
@@ -35,8 +31,10 @@ class RowDropTarget extends PureComponent {
   }
 }
 
-export default DropTarget('row-drop-target', boxTarget, (connect, monitor) => ({
+const droppedTarget = DropTarget('row-drop-target', boxTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop(),
 }))(RowDropTarget);
+
+export default connect()(droppedTarget);

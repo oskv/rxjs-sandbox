@@ -1,38 +1,24 @@
 import React, {PureComponent} from 'react';
+import { connect } from 'react-redux'
 import Row from '../Row'
 import RowDropTarget from '../RowDropTarget'
 import './styles.css'
 const update = require('immutability-helper');
 
-export default class EmaiContent extends PureComponent {
+class EmaiContent extends PureComponent {
 
-  constructor(props) {
+  /*constructor(props) {
     super(props);
     this.moveCard = this.moveCard.bind(this);
-    this.state = {
-      rows: [
-        { id: 1, name: 'row 1', columns: [{ width: 100 }] },
-        { id: 2, name: 'row 2', columns: [
-          {
-            width: 60,
-            block: {
-              id: 'block_1',
-              type: 'text',
-              value: 'Enter some text here',
-            }
-          },
-          { width: 40 }] },
-        { id: 3, name: 'row 3', columns: [{ width: 33 }, { width: 33 }, { width: 33 }] },
-        { id: 4, name: 'row 4', columns: [{ width: 25 }, { width: 25 }, { width: 25 }, { width: 25 }] },
-      ]
-    }
-  }
+  }*/
 
   render() {
-    const { rows } = this.state;
+    const { rows } = this.props;
+    console.log('rows render');
+    console.log(rows);
     const listRows = rows.map((row, i) =>
-      <div key={row.id}>
-        <RowDropTarget />
+      <div key={row.hash}>
+        <RowDropTarget rowIndex={i} position='before' />
         <Row allowedDropEffect="any"
              index={i}
              id={row.id}
@@ -40,12 +26,13 @@ export default class EmaiContent extends PureComponent {
              name={row.name}
              moveCard={this.moveCard}
         />
-        { i === rows.length-1 && <RowDropTarget/>}
+        { i === rows.length-1 && <RowDropTarget rowIndex={i} position='after' />}
       </div>
     );
     return (
       <div className="email-content">
         {listRows}
+        {!listRows.length && <RowDropTarget rowIndex={0} />}
       </div>
     );
   }
@@ -64,3 +51,11 @@ export default class EmaiContent extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  rows: state.rows,
+});
+
+export default connect(
+  mapStateToProps,
+)(EmaiContent)

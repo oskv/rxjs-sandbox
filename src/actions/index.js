@@ -1,9 +1,19 @@
-export const addRow = options => ({
+export const addRow = (rowIndex, position, templateData) => ({
   type: 'ADD_ROW',
-  options
+  rowIndex,
+  position,
+  templateData
 });
 
-export const moveRow = options => ({
+export const moveRow = (currentIndex, newIndex) => ({
   type: 'MOVE_ROW',
-  options
+  currentIndex,
+  newIndex
+});
+
+export const addBlock = ({ columnIndex, rowId, blockTemplateData }) => ({
+  type: 'ADD_BLOCK',
+  columnIndex,
+  rowId,
+  blockTemplateData,
 });

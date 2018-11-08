@@ -7,9 +7,7 @@ import { DragSource } from 'react-dnd';
 
 const boxSource = {
   beginDrag(props) {
-    return {
-      name: props.name,
-    }
+    return props;
   },
 
   endDrag(props, monitor) {

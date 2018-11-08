@@ -5,20 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import { DragSource } from 'react-dnd';
 
 const boxSource = {
-  beginDrag(props) {
+  beginDrag({ columns }) {
     return {
-      name: props.name,
-    }
-  },
-
-  endDrag(props, monitor) {
-    const item = monitor.getItem();
-    const dropResult = monitor.getDropResult();
-
-    if (dropResult) {
-      console.log(`You dropped ${item} into ${dropResult}!`);
-      console.log(item);
-      console.log(dropResult);
+      templateData: { columns },
     }
   },
 };
