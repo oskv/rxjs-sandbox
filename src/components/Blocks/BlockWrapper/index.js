@@ -1,43 +1,33 @@
 import React, { PureComponent } from 'react'
-import { DragSource } from 'react-dnd'
 import Text from '../Text';
 import './styles.css'
-
-const boxSource = {
-  beginDrag(props) {
-    return {
-      name: props.name,
-    }
-  },
-
-  endDrag(props, monitor) {
-    const item = monitor.getItem();
-    const dropResult = monitor.getDropResult()
-
-    if (dropResult) {
-      console.log(`You dropped ${item} into ${dropResult}!`);
-      console.log(item);
-      console.log(dropResult);
-    }
-  },
-};
+import { connect } from "react-redux";
+import { setActiveBlock } from "../../../actions";
 
 class BlockWrapper extends PureComponent {
-  render() {
-    const { options, connectDragSource } = this.props;
+  constructor(props) {
+    super(props);
+    this.select = this.select.bind(this);
+  }
 
+  render() {
+    const { options } = this.props;
+    const className = this.props.activeBlock.id === options.id ? 'active' : '';
     return (
-      connectDragSource &&
-      connectDragSource(
-        <div className='block-wrapper'>
-          { options.type === 'text' && <Text options={options} />}
-        </div>,
-      )
+      <div className={`block-wrapper ${className}`} onClick={this.select} >
+        { options.type === 'text' && <Text options={options} />}
+      </div>
     )
+  }
+
+  select() {
+    const { options, dispatch } = this.props;
+    dispatch(setActiveBlock(options.id));
   }
 }
 
-export default DragSource('column', boxSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))(BlockWrapper);
+const mapStateToProps = state => ({
+  activeBlock: state.activeBlock,
+});
+
+export default connect(mapStateToProps)(BlockWrapper);

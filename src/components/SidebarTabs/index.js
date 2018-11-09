@@ -7,8 +7,9 @@ import Settings from '@material-ui/icons/Settings';
 import LineStyle from '@material-ui/icons/LineStyle';
 import RowTemplatesList from '../RowTemplatesList'
 import BlockTemplatesList from '../BlockTemplatesList'
+import {connect} from "react-redux";
 
-export default class SidebarTabs extends PureComponent {
+class SidebarTabs extends PureComponent {
   state = {
     value: 0,
   };
@@ -19,7 +20,10 @@ export default class SidebarTabs extends PureComponent {
 
   render() {
     const { value } = this.state;
+    const { activeBlock } = this.props;
+    const isBlockSelected = activeBlock.id;
 
+    console.log(this.props);
     return (
       <div className="sidebar-tabs">
         <Paper square>
@@ -29,10 +33,16 @@ export default class SidebarTabs extends PureComponent {
             <Tab label="Settings" icon={<Settings />} className="tab-label" />
           </Tabs>
         </Paper>
-        {value === 0 && <BlockTemplatesList/>}
+        {value === 0 && !isBlockSelected && <BlockTemplatesList/>}
+        {value === 0 && isBlockSelected && <div>Block Properties</div>}
         {value === 1 && <RowTemplatesList/>}
         {value === 2 && <div>Item Three</div>}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  activeBlock: state.activeBlock,
+});
+export default connect(mapStateToProps)(SidebarTabs);
