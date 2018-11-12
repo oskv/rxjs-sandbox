@@ -26,7 +26,7 @@ class Column extends PureComponent {
 
     return (
       <div className='column' style={{ width }}>
-        { block && <BlockWrapper options={block} /> }
+        { block && <BlockWrapper block={block} /> }
 
         {!block && connectDropTarget &&
           connectDropTarget(

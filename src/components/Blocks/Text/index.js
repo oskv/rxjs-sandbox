@@ -3,11 +3,11 @@ import './styles.css'
 
 export default class BlockWrapper extends PureComponent {
   render() {
-    const { options } = this.props;
+    const { block } = this.props;
 
     return (
       <div className='text-block'>
-        <span>{options.type}</span>
+        <span>{block.type}</span>
       </div>
     )
   }

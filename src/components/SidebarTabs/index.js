@@ -7,6 +7,7 @@ import Settings from '@material-ui/icons/Settings';
 import LineStyle from '@material-ui/icons/LineStyle';
 import RowTemplatesList from '../RowTemplatesList'
 import BlockTemplatesList from '../BlockTemplatesList'
+import BlockProperties from '../BlockProperties'
 import {connect} from "react-redux";
 
 class SidebarTabs extends PureComponent {
@@ -23,7 +24,6 @@ class SidebarTabs extends PureComponent {
     const { activeBlock } = this.props;
     const isBlockSelected = activeBlock.id;
 
-    console.log(this.props);
     return (
       <div className="sidebar-tabs">
         <Paper square>
@@ -34,7 +34,7 @@ class SidebarTabs extends PureComponent {
           </Tabs>
         </Paper>
         {value === 0 && !isBlockSelected && <BlockTemplatesList/>}
-        {value === 0 && isBlockSelected && <div>Block Properties</div>}
+        {value === 0 && isBlockSelected && <BlockProperties block={activeBlock} />}
         {value === 1 && <RowTemplatesList/>}
         {value === 2 && <div>Item Three</div>}
       </div>

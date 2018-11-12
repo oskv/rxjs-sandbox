@@ -11,18 +11,18 @@ class BlockWrapper extends PureComponent {
   }
 
   render() {
-    const { options } = this.props;
-    const className = this.props.activeBlock.id === options.id ? 'active' : '';
+    const { block } = this.props;
+    const className = this.props.activeBlock.id === block.id ? 'active' : '';
     return (
       <div className={`block-wrapper ${className}`} onClick={this.select} >
-        { options.type === 'text' && <Text options={options} />}
+        { block.type === 'text' && <Text block={block} />}
       </div>
     )
   }
 
   select() {
-    const { options, dispatch } = this.props;
-    dispatch(setActiveBlock(options.id));
+    const { block, dispatch } = this.props;
+    dispatch(setActiveBlock(block));
   }
 }
 

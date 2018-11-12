@@ -8,14 +8,7 @@ import { connect } from "react-redux";
 import { moveRow } from '../../actions';
 
 const boxTarget = {
-  drop(props, monitor, component) {
-    return {
-      name: `Dustbin`,
-    }
-  },
-
   hover(props, monitor, component) {
-    console.log('hover');
     if (!component) {
       return null
     }
@@ -53,10 +46,7 @@ const boxTarget = {
       return
     }
 
-    console.log('.....');
-    console.log(dragIndex, hoverIndex);
     props.dispatch(moveRow(dragIndex, hoverIndex));
-    //props.moveCard(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex
   }
 };
@@ -66,17 +56,6 @@ const boxSource = {
     return {
       id: props.id,
       index: props.index,
-    }
-  },
-
-  endDrag(props, monitor) {
-    const item = monitor.getItem();
-    const dropResult = monitor.getDropResult()
-
-    if (dropResult) {
-      console.log(`You dropped ${item} into ${dropResult}!`);
-      console.log(item);
-      console.log(dropResult);
     }
   },
 };

@@ -18,7 +18,11 @@ export const addBlock = ({ columnIndex, rowId, blockTemplateData }) => ({
   blockTemplateData,
 });
 
-export const setActiveBlock = blockId => ({
+export const setActiveBlock = block => ({
   type: 'SET_ACTIVE_BLOCK',
-  blockId,
+  block,
+});
+
+export const disactivateBlock = () => ({
+  type: 'DISACTIVATE_BLOCK'
 });
