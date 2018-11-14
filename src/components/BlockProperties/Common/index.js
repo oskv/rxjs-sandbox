@@ -1,20 +1,24 @@
 import React, { PureComponent } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
+import { connect } from "react-redux";
+import { updateBlockStyles } from "../../../actions";
 
-export default class CommonBlockProperty extends PureComponent {
+class CommonBlockProperties extends PureComponent {
 
   constructor(props) {
     super(props);
     this.changeMargin = this.changeMargin.bind(this);
+    const { styles } = props.block;
     this.state = {
-      value: 0,
+      padding: styles.padding,
     };
   }
 
   render() {
     //const { block } = this.props;
-    const { value } = this.state;
+    const { padding } = this.state;
+    console.log(this.props);
 
     return (
       <div className='common-properties'>
@@ -23,7 +27,7 @@ export default class CommonBlockProperty extends PureComponent {
           min={0}
           max={30}
           step={1}
-          value={value}
+          value={padding}
           aria-labelledby="label"
           className='slider'
           onChange={this.changeMargin}
@@ -33,6 +37,10 @@ export default class CommonBlockProperty extends PureComponent {
   }
 
   changeMargin(event, value) {
-    this.setState({ value });
+    this.setState({ padding: value });
+    const { block, dispatch} = this.props;
+    dispatch(updateBlockStyles(block, { padding: value }))
   }
 }
+
+export default connect()(CommonBlockProperties)

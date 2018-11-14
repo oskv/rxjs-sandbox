@@ -26,3 +26,9 @@ export const setActiveBlock = block => ({
 export const disactivateBlock = () => ({
   type: 'DISACTIVATE_BLOCK'
 });
+
+export const updateBlockStyles = (block, properties) => ({
+  type: 'UPDATE_BLOCK_STYLES',
+  block,
+  properties,
+});

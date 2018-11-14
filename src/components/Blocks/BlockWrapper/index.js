@@ -12,9 +12,10 @@ class BlockWrapper extends PureComponent {
 
   render() {
     const { block } = this.props;
-    const className = this.props.activeBlock.id === block.id ? 'active' : '';
+    const isActive = this.props.activeBlock.id === this.props.block.id;
+    const className = isActive ? 'active' : '';
     return (
-      <div className={`block-wrapper ${className}`} onClick={this.select} >
+      <div className={`block-wrapper ${className}`} onClick={this.select} style={block.styles}>
         { block.type === 'text' && <Text block={block} />}
       </div>
     )
