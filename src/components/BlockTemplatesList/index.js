@@ -7,8 +7,8 @@ export default class RowTemplatesList extends PureComponent {
   constructor(props) {
     super(props);
     this.blocks = [
-      { type: 'text', icon: 'text_format', data: { text: 'Input som text here'}},
-      { type: 'image', icon: 'image'},
+      { type: 'text', icon: 'text_format', data: { text: 'Input some text here'} },
+      { type: 'image', icon: 'image', data: { src: '/images/image-icon-png.png', width: 100, height: 100} },
       { type: 'button', icon: 'insert_link'},
       { type: 'divider', icon: 'vertical_align_center'},
       { type: 'video', icon: 'videocam'},
@@ -18,7 +18,7 @@ export default class RowTemplatesList extends PureComponent {
   render() {
     const listRows = this.blocks.map((block, i) =>
       <Grid item key={i} xs={6}>
-        <BlockTemplate type={block.type} icon={block.icon} />
+        <BlockTemplate type={block.type} icon={block.icon} options={block.data} />
       </Grid>
     );
     return (

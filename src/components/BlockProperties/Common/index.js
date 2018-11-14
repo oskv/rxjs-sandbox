@@ -9,16 +9,10 @@ class CommonBlockProperties extends PureComponent {
   constructor(props) {
     super(props);
     this.changeMargin = this.changeMargin.bind(this);
-    const { styles } = props.block;
-    this.state = {
-      padding: styles.padding,
-    };
   }
 
   render() {
-    //const { block } = this.props;
-    const { padding } = this.state;
-    console.log(this.props);
+    const { styles } = this.props.block;
 
     return (
       <div className='common-properties'>
@@ -27,7 +21,7 @@ class CommonBlockProperties extends PureComponent {
           min={0}
           max={30}
           step={1}
-          value={padding}
+          value={styles.padding}
           aria-labelledby="label"
           className='slider'
           onChange={this.changeMargin}
@@ -37,7 +31,6 @@ class CommonBlockProperties extends PureComponent {
   }
 
   changeMargin(event, value) {
-    this.setState({ padding: value });
     const { block, dispatch} = this.props;
     dispatch(updateBlockStyles(block, { padding: value }))
   }

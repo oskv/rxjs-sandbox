@@ -5,7 +5,7 @@ const activeBlock = (state = {}, action) => {
     case 'DISACTIVATE_BLOCK':
       return {};
     case 'UPDATE_BLOCK_STYLES':
-      return Object.assign({}, state, { properties: action.properties });
+      return Object.assign({}, state, { styles: action.properties });
     default:
       return state;
   }
