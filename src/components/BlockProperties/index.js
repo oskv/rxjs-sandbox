@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import Grid from '@material-ui/core/Grid';
 import CommonProperties from './Common';
+import ImageProperties from './Image';
 import './styles.css'
 import { disactivateBlock } from "../../actions";
 import {connect} from "react-redux";
@@ -16,6 +17,7 @@ class BlockProperties extends PureComponent {
 
   render() {
     const { block } = this.props;
+    console.log(block);
 
     return (
       <div className='block-properties'>
@@ -31,7 +33,7 @@ class BlockProperties extends PureComponent {
         </Grid>
 
         <CommonProperties block={block}/>
-
+        { block.type === 'image' && <ImageProperties block={block}/> }
 
       </div>
     )
