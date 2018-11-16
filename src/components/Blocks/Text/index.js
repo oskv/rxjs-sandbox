@@ -8,9 +8,9 @@ import * as Icons from '../../../../node_modules/react-draft-wysiwyg/images/alig
 
 
 
-export default class BlockWrapper extends PureComponent {
+export default class Text extends PureComponent {
   render() {
-    const { options } = this.props;
+    const { block } = this.props;
 
     return (
       <div className='text-block'>
@@ -58,7 +58,6 @@ export default class BlockWrapper extends PureComponent {
     }}
   />
 );
-        <span>{options.type}</span>
       </div>
     )
   }

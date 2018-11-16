@@ -10,17 +10,6 @@ const boxSource = {
   beginDrag(props) {
     return props;
   },
-
-  endDrag(props, monitor) {
-    const item = monitor.getItem();
-    const dropResult = monitor.getDropResult();
-
-    if (dropResult) {
-      console.log(`You dropped ${item} into ${dropResult}!`);
-      console.log(item);
-      console.log(dropResult);
-    }
-  },
 };
 
 class BlockTemplate extends PureComponent {

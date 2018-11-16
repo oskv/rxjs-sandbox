@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Text from '../Text';
+import Image from '../Image';
 import './styles.css'
 import { connect } from "react-redux";
 import { setActiveBlock } from "../../../actions";
@@ -11,18 +12,20 @@ class BlockWrapper extends PureComponent {
   }
 
   render() {
-    const { options } = this.props;
-    const className = this.props.activeBlock.id === options.id ? 'active' : '';
+    const { block } = this.props;
+    const isActive = this.props.activeBlock.id === this.props.block.id;
+    const className = isActive ? 'active' : '';
     return (
-      <div className={`block-wrapper ${className}`} onClick={this.select} >
-        { options.type === 'text' && <Text options={options} />}
+      <div className={`block-wrapper ${className}`} onClick={this.select} style={block.styles}>
+        { block.type === 'text' && <Text block={block} />}
+        { block.type === 'image' && <Image block={block} />}
       </div>
     )
   }
 
   select() {
-    const { options, dispatch } = this.props;
-    dispatch(setActiveBlock(options.id));
+    const { block, dispatch } = this.props;
+    dispatch(setActiveBlock(block));
   }
 }
 
