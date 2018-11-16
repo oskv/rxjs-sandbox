@@ -11,7 +11,6 @@ export default class RowTemplatesList extends PureComponent {
       { type: 'image', icon: 'image', data: { src: '/images/image-icon-png.png', width: 100, height: 100} },
       { type: 'button', icon: 'insert_link'},
       { type: 'divider', icon: 'vertical_align_center'},
-      { type: 'video', icon: 'videocam'},
     ];
   }
 

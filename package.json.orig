@@ -1,0 +1,31 @@
+{
+  "name": "react-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.1.1",
+    "@material-ui/icons": "^3.0.1",
+<<<<<<< HEAD
+    "draft-js": "^0.10.5",
+    "draftjs-to-html": "^0.8.4",
+=======
+    "@material-ui/lab": "^3.0.0-alpha.23",
+>>>>>>> 5efbd571930099664bf69877a902d2fd693ff121
+    "immutability-helper": "^2.8.1",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.5.1",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^5.0.1",
+    "react-dom": "^16.5.1",
+    "react-draft-wysiwyg": "^1.12.13",
+    "react-redux": "^5.1.0",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
