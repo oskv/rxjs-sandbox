@@ -33,8 +33,7 @@ class SidebarTabs extends PureComponent {
             <Tab label="Settings" icon={<Settings />} className="tab-label" />
           </Tabs>
         </Paper>
-        {value === 0 && !isBlockSelected && <BlockTemplatesList/>}
-        {value === 0 && isBlockSelected && <div>Block Properties</div>}
+        {value === 0 && <BlockTemplatesList/>}
         {value === 1 && <RowTemplatesList/>}
         {value === 2 && <div>Item Three</div>}
       </div>
